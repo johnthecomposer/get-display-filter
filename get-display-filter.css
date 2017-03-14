@@ -13,7 +13,7 @@ Solution: John Celentano | john.celentano@gmail.com
      - proportional column widths
      - revisit options rather than fixed positions
      - responsive layout
-     - sorting options: drag and drop/in-place
+     - sorting options: drag and drop / in-place
 
 */
 
@@ -63,6 +63,7 @@ div#content_container{position: fixed; top: 102px; overflow: hidden; width: 100v
                     .active_filter{color: white; background-color: #162955;}
                table#fetched_data{position: relative; top: 111px; left: 40px; table-layout: fixed; width: 90%; z-index: 40;}
 
+/* temporary fixes */
 @media screen and (-webkit-min-device-pixel-ratio:0){
      table#fixed_header{top: 202px;}
 }
