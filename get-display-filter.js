@@ -14,7 +14,6 @@ Solution: John Celentano | john.celentano@gmail.com
      - revisit options rather than fixed positions
      - responsive layout
      - sorting options: drag and drop / in-place.
-
 */
 
 window.onload = function(){
