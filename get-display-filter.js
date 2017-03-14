@@ -13,7 +13,7 @@ Solution: John Celentano | john.celentano@gmail.com
      - proportional column widths
      - revisit options rather than fixed positions
      - responsive layout
-     - sorting options: drag and drop / in-place.
+     - sorting options: drag and drop / in-place
 */
 
 window.onload = function(){
@@ -102,8 +102,9 @@ window.onload = function(){
                     var field = $(this);
                     fw = field.width()
                     $('#fixed_field_header').append($(this));
-                    $('#fixed_field_header .fieldname').width(fw);
+                    $('#fixed_field_header .fieldname').width(fw + 10);
                });
+
                $('#fixed_field_header .fieldname').click(function(){
                     var this_fieldname = $(this).text();
                     var in_look_in = look_in.indexOf(this_fieldname);
@@ -116,7 +117,20 @@ window.onload = function(){
                     $(this).toggleClass('active_filter');
                     console.log(look_in);
                });
-               //$('#fixed_field_header').width();
+
+
+               // Fix: temporary layout adjustment
+               $('table').width(918);
+               /*if(navigator.userAgent.indexOf('Chrome') !== -1){
+                    var current_width = $('#fixed_header').width();
+                    $('#fixed_header').width(current_width + 4);
+               }
+               if(navigator.userAgent.indexOf('Safari') !== -1 &&
+                    navigator.userAgent.indexOf('Chrome') === -1){
+                    var current_width = $('#fixed_header').width();
+                    $('#fixed_header').width(current_width - 2);
+               }*/
+               // To Do: proportional column widths
                //$('th.col-0').width('10%');
                //$('th.col-1').width('40%');
                //$('th.col-2').width('25%');
@@ -199,7 +213,7 @@ window.onload = function(){
                          }
                     };
                     var get_url = 'http://[server]/tenable/download/request' + (query_param > 0 ? '?host=' + query_param : '');
-                    xmlhttp.open("GET", "/get-show-filter/data/configurations.json"); // get_url
+                    xmlhttp.open('GET', get_url); // '/get-display-filter/data/configurations.json'
                     xmlhttp.send();
                }
           }
