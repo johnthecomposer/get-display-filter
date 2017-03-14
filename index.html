@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+     <head>
+          <!--
+
+          Tenable Nessus UI Challenge
+          Solution: John Celentano | john.celentano@gmail.com
+
+               current functionality:
+               - onclick of 'get' button, a GET request is sent to the server defined in get_url
+               - the data retrieved can be filtered via the search bar (using jQuery autocomplete)
+               - search bar results can be further refined by clicking the column headers
+               - alternatively, the results range can be defined with the sliders
+
+               with more time would add:
+               - proportional column widths
+               - revisit options rather than fixed positions
+               - responsive layout
+               - sorting options: drag and drop/in-place
+
+          -->
+          <meta charset="UTF-8">
+          <title>Tenable Nessus UI Challenge</title>
+          <link rel="shortcut icon" href="/get-show-filter/img/favicon.png" type="image/png" />
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>
+          <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+          <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+          <link rel="stylesheet" type="text/css" href="/get-show-filter/get-show-filter.css">
+          <script src="/get-show-filter/get-show-filter.js"></script>
+     </head>
+     <body>
+          <div id="header_container">
+               <div id="header_content">
+                    <div id="logo_container"><a href="http://www.tenable.com/">
+                         <p>&nbsp;&nbsp;&nbsp;&lowbar;&lowbar;&lowbar;&lowbar;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lowbar;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lowbar;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lowbar;</p>
+                         <p>&nbsp;&sol;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bsol;&nbsp;&nbsp;&verbar;&nbsp;&verbar;&lowbar;&nbsp;&lowbar;&lowbar;&lowbar;&nbsp;&lowbar;&nbsp;&lowbar;&lowbar;&nbsp;&nbsp;&nbsp;&lowbar;&lowbar;&nbsp;&lowbar;&verbar;&nbsp;&verbar;&lowbar;&lowbar;&nbsp;&verbar;&nbsp;&verbar;&nbsp;&lowbar;&lowbar;&lowbar;</p>
+                         <p>&sol;&nbsp;&nbsp;&nbsp;&sol;&bsol;&nbsp;&nbsp;&nbsp;&bsol;&nbsp;&verbar;&nbsp;&lowbar;&lowbar;&sol;&nbsp;&lowbar;&nbsp;&bsol;&nbsp;'&lowbar;&nbsp;&bsol;&nbsp;&sol;&nbsp;&lowbar;`&nbsp;&verbar;&nbsp;'&lowbar;&nbsp;&bsol;&verbar;&nbsp;&verbar;&sol;&nbsp;&lowbar;&nbsp;&bsol;</p>
+                         <p>&bsol;&nbsp;&nbsp;&nbsp;&bsol;&sol;&nbsp;&nbsp;&nbsp;&sol;&nbsp;&verbar;&nbsp;&verbar;&verbar;&nbsp;&nbsp;&lowbar;&lowbar;&sol;&nbsp;&verbar;&nbsp;&verbar;&nbsp;&verbar;&nbsp;&lpar;&lowbar;&verbar;&nbsp;&verbar;&nbsp;&verbar;&lowbar;&rpar;&nbsp;&verbar;&nbsp;&verbar;&nbsp;&nbsp;&lowbar;&lowbar;&sol;</p>
+                         <p>&nbsp;&bsol;&nbsp;&lowbar;&lowbar;&lowbar;&lowbar;&nbsp;&sol;&nbsp;&nbsp;&nbsp;&bsol;&lowbar;&lowbar;&bsol;&lowbar;&lowbar;&lowbar;&verbar;&lowbar;&verbar;&nbsp;&verbar;&lowbar;&verbar;&bsol;&lowbar;&lowbar;&comma;&lowbar;&verbar;&lowbar;&period;&lowbar;&lowbar;&sol;&verbar;&lowbar;&verbar;&bsol;&lowbar;&lowbar;&lowbar;&verbar;</p>
+                         </a>
+                    </div>
+                    <h1><a href="https://www.hackerrank.com/tests/fq3hfkopbkc/questions/1mc36e96esjNessus">UI Challenge</a></h1>
+                    <h2><a href="mailto:john.celentano@gmail.com">John Celentano</a></h2>
+               </div>
+          </div>
+          <div id="content_container">
+               <form id="get_data" name="get_data" action="#">
+                    <div id="controls_bar">
+                         <button type="button" title="Request data from the server." id="get" value="get">get</button>
+                         <input type="number" min="1" step="1" title="Specify the number of records to retrieve; leave blank to request all records." id="query_param" name="query_param" placeholder="[ # ]">
+                         <input type="text" name="search_bar" title="Search and filter the results." id="search_bar" class="auto_search" placeholder="[ search ]" disabled>
+                         <div id="corner_info">
+                              <span id="results_count"></span><br>
+                              <span id="last_updated"></span>
+                         </div>
+                    </div>
+                    <div id="data_container">
+                         <div id="range_container">
+                              <div id="slider-range"></div>
+                         </div>
+                         <table id="fixed_header">
+                              <tr id="fixed_title"></tr>
+                              <tr id="fixed_field_header"></tr>
+                         </table>
+                         <table id="fetched_data"></table>
+                    </div>
+               </form>
+          </div>
+     </body>
+</html>

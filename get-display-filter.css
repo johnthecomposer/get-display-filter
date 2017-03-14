@@ -1,0 +1,68 @@
+/*
+
+Tenable Nessus UI Challenge
+Solution: John Celentano | john.celentano@gmail.com
+
+     current functionality:
+     - onclick of 'get' button, a GET request is sent to the server defined in get_url
+     - the data retrieved can be filtered via the search bar (using jQuery autocomplete)
+     - search bar results can be further refined by clicking the column headers
+     - alternatively, the results range can be defined with the sliders
+
+     with more time would add:
+     - proportional column widths
+     - revisit options rather than fixed positions
+     - responsive layout
+     - sorting options: drag and drop/in-place
+
+*/
+
+body, input, button{font-family: Consolas, monaco, monospace; font-size: 16px; line-height: 23px;
+     color: white; background-color: #e8e8ee; margin: 0; overflow: hidden;}
+     /* Source: placeholder styles from David Walsh at https://davidwalsh.name/html5-placeholder-css */
+     ::-webkit-input-placeholder { color:#7887AB; }
+     ::-moz-placeholder { color:#7887AB; } /* firefox 19+ */
+     :-ms-input-placeholder { color:#7887AB; } /* ie */
+     input:-moz-placeholder { color:#7887AB; }
+
+body{width: 100vw; height: 100vh; outline: 5px solid black; outline-offset: -5px;}
+a{text-decoration: none; color: #162955;/*#061539*/}
+div#header_container{position: fixed; width: 100%; color: #2E4272; background-color: #7887AB; outline: 2px solid #2E4272; outline-offset: -2px;}
+     div#header_content{display: inline-block; position: relative; height: 99px; color: #2E4272;}
+          p{margin: 0px; line-height: 20px;}
+          div#logo_container,h1,h2{display: inline-block; position: relative; margin: 0 10px;}
+          h1,h2{bottom: -1px;}
+
+div#content_container{position: fixed; top: 102px; overflow: hidden; width: 100vw; height: 78vh; padding: 20px; background-color: #2E4272; outline: 5px solid #7887AB; outline-offset: -5px;}
+     form{position: fixed; width: 80vw; height: 70vh; padding: 20px; background-color: #7887AB;}
+          div#controls_bar{padding: 7px; border-bottom: 1px solid #7887AB; background-color: #4F628B;}
+               div#search_bar{position: absolute; bottom: 20px; right: 20px; border: 1px solid #7887AB; width: 20%; height: 5%; padding: 10px; background-color: #e8e8ee;}
+               input{color: #4F628E; background-color: #061539; border: 1px solid #7887AB; width: 30%;}
+               input:hover{outline: none; border: 1px solid white;}
+               input:focus{outline: none; color: white;}
+               input[type=number]{width: 90px;}
+               button{padding: 10px; border: 1px solid #7887AB; color: #4F628E; background-color: #061539; border-radius: 50%; outline: none;}
+               button:hover{border: 1px solid white; color: white;}
+               div#corner_info{float: right; width: 45%; text-align: right;}
+
+          div#data_container{width: 100%; height: 50vh; padding-bottom: 40px; overflow-y: scroll;
+               background-color: #061539; border-bottom: 30px solid #061539;}
+               div#range_container{position: fixed; left: 5%; top: 233px; width: 95%; backgrond-color: #061539; z-index: 60;}
+                    .ui-slider{position: absolute; height: 80%; width: 80%;}
+                    .ui-slider .ui-slider-handle{height: 10px; width: 10px; outline: none;}
+                    .range{width: 80px; height: 20px; text-align: center; font-size: 75%; color: #7887AB; z-index: 70}
+                    .ui-slider .ui-slider-handle:hover .range, .range:hover{color: white;}
+                    div#lbound{margin: 10px 0 0 -35px;}
+                    div#ubound{margin: -25px 0 0 -35px;}
+
+               table, th, td{color: #94C0E9; border: 1px solid grey; border-collapse: collapse;}
+               th,td{word-wrap: break-word;}
+               th{background-color: #2E4272; left: 80px; z-index: 50;}
+               table#fixed_header{position: fixed; top: 204px; left: 80px; border: none; z-index: 50;}
+                    .table_title{height: 80px; vertical-align: bottom; background-color: #061539; border-top: none; border-left: 1px solid #061539; border-right: 1px solid #061539;}
+                    .active_filter{color: white; background-color: #162955;}
+               table#fetched_data{position: relative; top: 111px; left: 40px; table-layout: fixed; width: 90%; z-index: 40;}
+
+@media screen and (-webkit-min-device-pixel-ratio:0){
+     table#fixed_header{top: 202px;}
+}
